@@ -139,6 +139,9 @@ _register_field(struct pbc_rmessage * field, struct _field * f, struct _stringpo
 			f->label = LABEL_PACKED;
 		}
 	}
+	if(f->label == LABEL_REPEATED) {
+		f->label = LABEL_PACKED;
+	}
 	f->type_name.n = pbc_rmessage_string(field, "type_name", 0 , NULL) +1;	// abandon prefix '.' 
 	int vsz;
 	const char * default_value = pbc_rmessage_string(field, "default_value", 0 , &vsz);
