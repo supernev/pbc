@@ -1,6 +1,7 @@
 CC = gcc
 CFLAGS = -O2 -fPIC -Wall
 AR = ar rc
+PROTOC = protoc
 
 BUILD = build
 
@@ -73,7 +74,7 @@ define PROTO_temp
   PROTO := $(PROTO) $$(TAR).pb
   $$(TAR).pb : | $(BUILD)
   $$(TAR).pb : test/$(1)
-	protoc -o$$@ $$<
+	$(PROTOC) -o$$@ $$<
 endef
 
 $(foreach s,$(PROTOSRCS),$(eval $(call PROTO_temp,$(s))))
